@@ -7,5 +7,20 @@
     "firstname": "Manish",
     "lastname": "Sonkar",
     "zipcode":"222222"
+  },
+  "invalidCustomer1": {
+    "firstname": "",
+    "lastname": "Kumar",
+    "zipcode": "222222"
+  },
+  "invalidCustomer2": {
+    "firstname": "Manish",
+    "lastname": "",
+    "zipcode": "222222"
+  },
+  "invalidCustomer3": {
+    "firstname": "Manish",
+    "lastname": "Sonkar",
+    "zipcode": ""
   }
 }

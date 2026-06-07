@@ -9,7 +9,9 @@
   "all":"playwright test",
   "debug":"playwright test --debug",
   "debug_smoke":"playwright test --grep @smoke --debug",
-  "debug_regression":"playwright test --grep @regression --debug"
+  "debug_regression":"playwright test --grep @regression --debug",
+  "UICheck":"playwright test --grep @UICheck",
+  "UICheck_debug":"playwright test --grep @UICheck --debug"
 },
   "keywords": [],
   "author": "",

@@ -16,6 +16,7 @@ class CheckoutPage extends BasePage {
 
         this.completeHeader = '.complete-header';
         this.checkoutOverviewTitle = '.title';
+        this.errorMsg = '//*[@id="checkout_info_container"]/div/form/div[1]/div[4]/h3';
     }
 
     async clickCheckout() {
@@ -51,6 +52,8 @@ class CheckoutPage extends BasePage {
         return await this.page.locator(this.checkoutOverviewTitle).textContent();
         // .toHaveText('Products');
     }
+     async getErrorMessage() {
+        return await this.page.locator(this.errorMsg).textContent();
+    }
 }
-
 module.exports = CheckoutPage;
