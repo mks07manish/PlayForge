@@ -9,6 +9,7 @@ test('@api Create User', async () => {
         'SDET'
     );
     logger.info(`Response Status : ${response.status}`);
+    logger.info(`Created Data : ${JSON.stringify(response.data)}`);
     expect(response.status).toBe(201);
     expect(response.data.name)
         .toBe('Manish');
@@ -20,6 +21,7 @@ test('@api Get User', async () => {
     const userApi = new UserApi();
     const response = await userApi.getUser(2);
     logger.info(`Response Status : ${response.status}`);
+    logger.info(`User Name : ${response.data.data.first_name} ${response.data.data.last_name}`);
     expect(response.status).toBe(200);
     expect(response.data.data.id).toBe(2);
 });
@@ -33,6 +35,7 @@ test('@api Update User', async () => {
             'Senior SDET'
         );
     logger.info(`Response Status : ${response.status}`);
+    logger.info(`Updated Data : ${JSON.stringify(response.data)}`);
     expect(response.status).toBe(200);
     expect(response.data.job)
         .toBe('Senior SDET');
