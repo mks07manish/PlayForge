@@ -1,237 +1,343 @@
-# TestForge
+# PlayForge: Playwright E2E Automation Framework
 
-A scalable Playwright-based automation framework designed to validate end-to-end e-commerce workflows through UI, API, Smoke, Regression, and Functional Testing.
+A scalable End-to-End Test Automation Framework built using Playwright, JavaScript, API Testing, Database Validation, Jenkins CI/CD, and Allure Reporting.
 
-## Overview
+## Project Overview
 
-TestForge is a modern automation framework built using Playwright and JavaScript. The framework follows the Page Object Model (POM) design pattern and provides reusable components for creating maintainable, scalable, and robust automated test suites.
+This framework demonstrates enterprise-level automation practices by combining:
 
-The framework automates critical e-commerce user journeys such as:
+- UI Automation Testing
+- API Automation Testing
+- Database Validation
+- End-to-End Business Flow Validation
+- CI/CD Integration
+- Advanced Reporting
 
-* User Authentication (Login/Logout)
-* Product Search and Validation
-* Add to Cart
-* Checkout Process
-* Order Placement
-* Order Cancellation
-* API Validation
-* Smoke Testing
-* Regression Testing
-* End-to-End Functional Testing
+The framework follows industry-standard design patterns including:
+
+- Page Object Model (POM)
+- Service Object Model
+- Repository Pattern
 
 ---
 
 ## Tech Stack
 
-* Playwright
-* JavaScript
-* Node.js
-* Allure Reporting
-* Winston Logging
-* Page Object Model (POM)
+| Technology | Usage |
+|------------|--------|
+| Playwright | UI Automation |
+| JavaScript | Programming Language |
+| Axios | API Automation |
+| MySQL | Database Validation |
+| Allure Report | Reporting |
+| Jenkins | CI/CD |
+| Winston | Logging |
+| Dotenv | Environment Management |
+| Git | Version Control |
 
 ---
 
-## Framework Features
-
-### UI Automation
-
-* Cross-browser testing
-* Element validations
-* End-to-end workflow validation
-* Data-driven execution
-
-### API Automation
-
-* REST API validation
-* Response verification
-* Status code validation
-* JSON response assertions
-
-### Reporting
-
-* Playwright HTML Report
-* Allure Report
-* Execution Logs
-
-### Logging
-
-* Winston Logger Integration
-* Step-level execution logs
-* Failure tracking
-
-### Test Execution
-
-* Smoke Suite
-* Regression Suite
-* Full Test Suite
-* Debug Execution
-
----
-
-## Project Structure
+## Framework Architecture
 
 ```text
-TestForge
+playwright-e2e-framework
 │
-├── pages/
+├── api
+│   ├── ApiClient.js
+│   └── UserApi.js
+│
+├── database
+│   ├── DBConnection.js
+│   ├── UserRepository.js
+│   └── CustomerRepository.js
+│
+├── fixtures
+│
+├── pages
 │   ├── BasePage.js
 │   ├── LoginPage.js
 │   ├── InventoryPage.js
 │   ├── CartPage.js
-│   ├── CheckoutPage.js
-│   └── LogoutPage.js
+│   └── CheckoutPage.js
 │
-├── tests/
-│   ├── ui/
-│   └── api/
+├── testdata
 │
-├── fixtures/
-│   └── pageFixture.js
+├── tests
+│   ├── api
+│   ├── ui
+│   ├── database
+│   └── e2e
 │
-├── testdata/
-│   └── userData.json
-│
-├── utils/
+├── utils
+│   ├── Logger.js
 │   ├── ConfigReader.js
-│   └── Logger.js
+│   ├── CustomerGenerator.js
+│   └── CustomerValidator.js
 │
-├── reports/
-├── allure-results/
-├── playwright.config.js
-└── package.json
+├── reports
+│
+└── playwright.config.js
+```
+
+---
+
+## Features
+
+### UI Automation
+
+- Login Validation
+- Product Validation
+- Add To Cart
+- Checkout Process
+- Order Placement
+
+### API Automation
+
+- Create User
+- Get User
+- Update User
+- Delete User
+
+### Database Validation
+
+- Customer Data Validation
+- Data Integrity Verification
+- Repository-Based Query Execution
+
+### Reporting
+
+- HTML Reports
+- Allure Reports
+- Screenshots on Failure
+- Video Recording on Failure
+- Execution Logs
+
+### CI/CD
+
+- Jenkins Integration
+- Automated Regression Execution
+- Report Publishing
+
+---
+
+## Design Patterns Used
+
+### Page Object Model
+
+```text
+Tests
+ ↓
+Pages
+ ↓
+Playwright Actions
+```
+
+### Service Object Model
+
+```text
+Tests
+ ↓
+API Services
+ ↓
+Axios Client
+```
+
+### Repository Pattern
+
+```text
+Tests
+ ↓
+Repositories
+ ↓
+Database
+```
+
+---
+
+## Environment Configuration
+
+Create `.env`
+
+```env
+BASE_URL=https://www.saucedemo.com
+
+API_URL=https://reqres.in/api
+
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=root
+DB_NAME=automation_db
 ```
 
 ---
 
 ## Installation
 
-Clone the repository:
+Clone Repository
 
 ```bash
 git clone <repository-url>
-cd TestForge
 ```
 
-Install dependencies:
+Install Dependencies
 
 ```bash
 npm install
 ```
 
+Install Browsers
+
+```bash
+npx playwright install
+```
+
 ---
 
-## Test Execution
+## Execute Tests
 
-Run Smoke Suite
+Run All Tests
+
+```bash
+npx playwright test
+```
+
+Run Smoke Tests
 
 ```bash
 npm run smoke
 ```
 
-Run Regression Suite
+Run Regression Tests
 
 ```bash
 npm run regression
 ```
 
-Run Complete Test Suite
+Run API Tests
 
 ```bash
-npm run all
+npx playwright test tests/api
 ```
 
-Debug Smoke Tests
+Run Database Tests
 
 ```bash
-npm run debug_smoke
+npx playwright test tests/database
 ```
 
-Debug Regression Tests
+Run E2E Tests
 
 ```bash
-npm run debug_regression
-```
-
----
-
-## Reporting
-
-Generate Allure Report
-
-```bash
-allure generate allure-results --clean
-```
-
-Open Allure Report
-
-```bash
-allure open allure-report
-```
-
-Serve Allure Report
-
-```bash
-allure serve allure-results
-```
-
-Playwright HTML Report
-
-```bash
-npx playwright show-report
+npx playwright test tests/e2e
 ```
 
 ---
 
-## Sample End-to-End Scenarios
+## Allure Reporting
 
-### Complete Purchase Flow
+Generate Report
 
-* Login
-* Select Product
-* Add Product to Cart
-* Checkout
-* Enter Customer Details
-* Review Order
-* Complete Purchase
-* Verify Order Confirmation
+```bash
+allure generate ./allure-results --clean
+```
 
-### Order Cancellation Flow
+Open Report
 
-* Login
-* Add Product to Cart
-* Checkout
-* Enter Customer Details
-* Review Order
-* Cancel Transaction
-* Verify Navigation to Product Page
+```bash
+allure open
+```
 
 ---
 
-## Design Patterns Used
+# Reporting Screenshots
 
-* Page Object Model (POM)
-* Fixture-Based Dependency Injection
-* Centralized Configuration Management
-* Reusable Utility Components
-* Data-Driven Testing
+## Allure Dashboard
+
+![Allure Dashboard](assets/overall-report.png)
+
+---
+
+## Test Suites View
+
+![Suites View](assets/suites.png)
+
+---
+
+## Video Recording On Failure
+
+Playwright automatically records execution videos for failed test cases.
+
+![Failure Video](assets/recorded-video-on-failure.png)
+
+---
+
+## Sample E2E Flow
+
+```text
+Create Customer
+        ↓
+Validate Customer Data
+        ↓
+Insert Customer Into DB
+        ↓
+Login Application
+        ↓
+Add Product To Cart
+        ↓
+Checkout Using Customer Data
+        ↓
+Validate Order
+        ↓
+Cleanup Test Data
+```
+
+---
+
+## Customer Validation Rules
+
+The framework validates:
+
+### First Name
+
+- Cannot be blank
+- Minimum 3 characters
+- No special characters
+
+### Last Name
+
+- Cannot be blank
+- Minimum 3 characters
+- No special characters
+
+### Zip Code
+
+- Cannot be blank
+- Minimum 3 digits
+- Numeric Validation
 
 ---
 
 ## Future Enhancements
 
-* Jenkins CI/CD Integration
-* Docker Execution
-* Parallel Test Execution
-* Environment Management
-* Database Validation
-* Visual Testing
-* Contract Testing
+- Docker Integration
+- GitHub Actions
+- Parallel Grid Execution
+- Slack Notifications
+- Extent Reports
+- Azure DevOps Integration
+- Data Driven Testing
+- Cross Browser Execution
 
 ---
 
 ## Author
 
-Manish Kumar Sonkar
+**Manish Kumar Sonkar**
 
-Software Engineer | Automation Engineer | Java Full Stack Developer
+Software Engineer | QA Automation Engineer | SDET Aspirant
+
+LinkedIn:
+https://linkedin.com/in/mks07manish
+
+GitHub:
+https://github.com/mks07manish
