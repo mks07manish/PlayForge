@@ -11,7 +11,8 @@ pipeline {
         DB_HOST     = credentials('db-host')
         DB_USER     = credentials('db-user')
         DB_PASSWORD = credentials('db-password')
-        API_TOKEN   = credentials('api-token')
+        DB_NAME     = credentials('db-name')
+        API_KEY     = credentials('api-key')
     }
 
     stages {
