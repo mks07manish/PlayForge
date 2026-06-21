@@ -5,6 +5,15 @@ pipeline {
         nodejs 'node-20'
     }
 
+    environment {
+        BASE_URL    = 'https://www.saucedemo.com'
+        API_URL     = 'https://reqres.in/api'
+        DB_HOST     = credentials('db-host')
+        DB_USER     = credentials('db-user')
+        DB_PASSWORD = credentials('db-password')
+        API_TOKEN   = credentials('api-token')
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -26,7 +35,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'npx playwright test'
+                bat 'npx playwright test --project=chromium --workers=3'
             }
         }
     }
